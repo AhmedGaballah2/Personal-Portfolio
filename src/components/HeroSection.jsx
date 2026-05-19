@@ -1,7 +1,7 @@
 import "../HeroSection.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
-import personalPhoto from "../assets/Personal-photo-1.png";
+import personalPhoto from "../assets/personal-photo-1.png";
 import cv from "../assets/Ahmed-Gaballah-Resume.pdf";
 import { motion } from "framer-motion";
 
