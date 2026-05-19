@@ -1,0 +1,129 @@
+.contact-container {
+  background-color: #0b0b0b;
+  color: #fff;
+  min-height: 100vh;
+  padding: 80px 10%;
+  border-bottom: 1px solid #d4af37;
+
+  h4 {
+    color: #d4af37;
+  }
+
+  h2 {
+    line-height: 1.3;
+    font-size: 42px;
+  }
+
+  .data {
+    span {
+      color: #d4af37;
+    }
+    p {
+      color: #7f7f7f;
+    }
+  }
+
+  .form {
+    background-color: #121212;
+    color: #fff;
+    border: 1px solid #7f7f7f;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+    z-index: 100;
+
+    div {
+      position: relative;
+      border-bottom: 2px solid #7f7f7f;
+
+      input,
+      textarea {
+        outline: none;
+        background: transparent;
+        border: none;
+        color: #fff;
+      }
+    }
+
+    div::before {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      height: 2px;
+      width: 20%;
+      background-color: #d4af37;
+    }
+
+    button {
+      background-color: transparent;
+      border: 2px solid #d4af37;
+      color: #d4af37;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: #d4af37;
+        color: #fff;
+      }
+    }
+  }
+
+  .contact-details {
+    background-color: #121212;
+    color: #fff;
+    border: 1px solid #7f7f7f;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+    z-index: 100;
+
+    .follow {
+      color: #d4af37;
+    }
+
+    .follow:hover {
+      color: #fff;
+    }
+
+    a {
+      text-decoration: none;
+      color: #fff;
+      transition: all 0.3s ease;
+    }
+
+    a:hover {
+      color: #d4af37;
+    }
+
+    .line {
+      .icon {
+        color: #d4af37;
+      }
+
+      .desc {
+        color: #7f7f7f;
+      }
+    }
+  }
+}
+
+@media (max-width: 1400px) {
+  .contact-container {
+    flex-direction: column !important;
+    justify-content: center !important;
+
+    .data,
+    .form,
+    .contact-details {
+      width: 70% !important;
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .contact-container {
+    .data,
+    .form,
+    .contact-details {
+      width: 100% !important;
+    }
+  }
+}
