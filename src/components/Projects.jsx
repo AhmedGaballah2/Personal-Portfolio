@@ -70,8 +70,8 @@ function Projects() {
             title="Freelance - Complete Online Store System (In Progress)"
             text="A complete E-Commerce platform with product management, order processing, and an admin dashboard for full store control."
             link="#"
-            pos={50}
-            delay={0.5}
+            pos={-50}
+            delay={0.2}
             view_btn={false}
           />
         </SwiperSlide>
@@ -82,8 +82,8 @@ function Projects() {
             title="Craftora E-Commerce Website (Full Project)"
             text="Full-featured online store with cart system"
             link="https://craftedhub.vercel.app/"
-            pos={-50}
-            delay={0.2}
+            pos={50}
+            delay={0.3}
             view_btn={true}
           />
         </SwiperSlide>
@@ -94,8 +94,8 @@ function Projects() {
             title="Tailor Landing Page"
             text="Creative landing page focused on clean UI and smooth UX"
             link="https://tailor-template.vercel.app/"
-            pos={50}
-            delay={0.3}
+            pos={-50}
+            delay={0.4}
             view_btn={true}
           />
         </SwiperSlide>
@@ -106,8 +106,8 @@ function Projects() {
             title="Personal Portfolio Website"
             text="Modern responsive portfolio showcasing projects"
             link="https://ahmed-gaballah-portfolio.vercel.app/"
-            pos={-50}
-            delay={0.4}
+            pos={50}
+            delay={0.5}
             view_btn={true}
           />
         </SwiperSlide>
