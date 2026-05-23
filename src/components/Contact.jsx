@@ -13,8 +13,35 @@ import {
   faFacebook,
 } from "@fortawesome/free-brands-svg-icons";
 import { motion } from "framer-motion";
+import { useRef } from "react";
+import emailjs from "@emailjs/browser";
 
 function Contact() {
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "service_a4rw2md",
+        "template_h1f9cxp",
+        form.current,
+        "_TUboaxiZBFWKs0Qg",
+      )
+      .then(
+        () => {
+          alert("Message Sent Successfully!");
+        },
+        (error) => {
+          console.log(error.text);
+          alert("Failed To Send Message");
+        },
+      );
+
+    e.target.reset();
+  };
+
   return (
     <div
       id="contact"
@@ -52,7 +79,9 @@ function Contact() {
         </motion.p>
       </div>
 
-      <motion.div
+      <motion.form
+        ref={form}
+        onSubmit={sendEmail}
         initial={{ y: -50, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ ease: "ease", duration: 0.4, delay: 0.6 }}
@@ -68,12 +97,14 @@ function Contact() {
         >
           <input
             type="text"
+            name="user_name"
             placeholder="Your Name"
             required
             style={{ width: "100%" }}
             className="p-2"
           />
         </motion.div>
+
         <motion.div
           initial={{ y: 0, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
@@ -83,12 +114,14 @@ function Contact() {
         >
           <input
             type="email"
+            name="user_email"
             placeholder="Your Email"
             required
             style={{ width: "100%" }}
             className="p-2"
           />
         </motion.div>
+
         <motion.div
           initial={{ y: 0, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
@@ -97,14 +130,16 @@ function Contact() {
           className="w-100"
         >
           <textarea
-            name=""
-            id=""
+            name="message"
             placeholder="Your Message"
+            required
             style={{ width: "100%", height: "150px" }}
             className="p-2"
           ></textarea>
         </motion.div>
+
         <motion.button
+          type="submit"
           initial={{ y: 0, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ ease: "ease", duration: 0.1, delay: 1.3 }}
@@ -113,7 +148,7 @@ function Contact() {
         >
           SEND MESSAGE
         </motion.button>
-      </motion.div>
+      </motion.form>
 
       <motion.div
         initial={{ y: 50, opacity: 0 }}
@@ -146,7 +181,7 @@ function Contact() {
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ ease: "ease", duration: 0.4, delay: 1.3 }}
           viewport={{ once: true }}
-          href="#"
+          href="https://www.linkedin.com/in/ahmedgaballah2/"
           className="follow m-2 mb-4 fs-5"
         >
           Follow Me

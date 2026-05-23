@@ -1,10 +1,18 @@
 import "../Projects.css";
+import "swiper/css";
+import "swiper/css/pagination";
+
 import beitAlAluminium from "../assets/Beit-Al-Aliminium.png";
 import craftora from "../assets/Craftora.png";
 import portfolio from "../assets/Portfolio.png";
 import tailor from "../assets/Tailor.png";
+import beitAlAluminiumWebsite from "../assets/Beit-Al-Aliminium (Website).png";
+
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
 
 function Projects() {
   return (
@@ -32,78 +40,117 @@ function Projects() {
         PROJECTS
       </motion.h2>
 
-      <div className="cards-container d-flex justify-content-between align-items-center flex-wrap gap-3">
-        <ProjectCard
-          img={beitAlAluminium}
-          title="Freelance - Store Management System (Inventory & Accounting App)"
-          text="Inventory tracking, invoicing, profit/loss system."
-          link=""
-          delay={0.6}
-          pos={50}
-        />
-        <ProjectCard
-          img={craftora}
-          title="Craftora E-Commerce Website (Full Project)"
-          text="Full-featured online store with cart system"
-          link="https://craftedhub.vercel.app/"
-          delay={0.8}
-          pos={-50}
-        />
-        <ProjectCard
-          img={tailor}
-          title="Tailor Landing Page"
-          text="Responsive landing page with clean UI design"
-          link="https://tailor-template.vercel.app/"
-          delay={1}
-          pos={50}
-        />
-        <ProjectCard
-          img={portfolio}
-          title="Personal Portfolio Website"
-          text="Modern responsive portfolio showcasing projects"
-          delay={1.2}
-          pos={-50}
-        />
-      </div>
+      <Swiper
+        slidesPerView={1}
+        spaceBetween={20}
+        pagination={{ clickable: true }}
+        breakpoints={{
+          768: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 },
+          1400: { slidesPerView: 4 },
+        }}
+        modules={[Pagination]}
+        className="projects-swiper"
+      >
+        <SwiperSlide>
+          <ProjectCard
+            img={beitAlAluminium}
+            title="Freelance - Store Management System (Inventory & Accounting App)"
+            text="Inventory tracking, invoicing, profit/loss system."
+            link=""
+            pos={50}
+            delay={0.1}
+            view_btn={false}
+          />
+        </SwiperSlide>
+
+        <SwiperSlide>
+          <ProjectCard
+            img={craftora}
+            title="Craftora E-Commerce Website (Full Project)"
+            text="Full-featured online store with cart system"
+            link="https://craftedhub.vercel.app/"
+            pos={-50}
+            delay={0.2}
+            view_btn={true}
+          />
+        </SwiperSlide>
+
+        <SwiperSlide>
+          <ProjectCard
+            img={tailor}
+            title="Tailor Landing Page"
+            text="Creative landing page focused on clean UI and smooth UX"
+            link="https://tailor-template.vercel.app/"
+            pos={50}
+            delay={0.3}
+            view_btn={true}
+          />
+        </SwiperSlide>
+
+        <SwiperSlide>
+          <ProjectCard
+            img={portfolio}
+            title="Personal Portfolio Website"
+            text="Modern responsive portfolio showcasing projects"
+            link="https://ahmed-gaballah-portfolio.vercel.app/"
+            pos={-50}
+            delay={0.4}
+            view_btn={true}
+          />
+        </SwiperSlide>
+
+        <SwiperSlide>
+          <ProjectCard
+            img={beitAlAluminiumWebsite}
+            title="Freelance - E-Commerce Website (Full Project) (In Progress)"
+            text="Full-stack E-Commerce website with React & Django and admin dashboard for orders."
+            link="#"
+            pos={50}
+            delay={0.5}
+            view_btn={false}
+          />
+        </SwiperSlide>
+      </Swiper>
     </div>
   );
 }
 
-function ProjectCard({ img, title, text, link, pos, delay }) {
+function ProjectCard({ img, title, text, link, pos, delay, view_btn }) {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 992);
 
   useEffect(() => {
-    const handleSize = () => {
+    const handleResize = () => {
       setIsMobile(window.innerWidth < 992);
     };
 
-    window.addEventListener("resize", handleSize);
-
-    return () => window.removeEventListener("resize", handleSize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
-    <>
-      <motion.div
-        initial={isMobile ? { x: pos, opacity: 0 } : { y: pos, opacity: 0 }}
-        whileInView={{ y: 0, x: 0, opacity: 1 }}
-        transition={{ duration: 0.5, delay }}
-        viewport={{ once: true }}
-        className="card d-flex flex-column h-auto"
-      >
-        <img src={img} className="card-img-top" alt="..." />
-        <div className="card-body d-flex justify-content-between align-items-start flex-column">
-          <h5 className="card-title">{title}</h5>
-          <p className="card-text">{text}</p>
+    <motion.div
+      initial={isMobile ? { x: pos, opacity: 0 } : { y: pos, opacity: 0 }}
+      animate={{ x: 0, y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, delay }}
+      className="card d-flex flex-column h-auto"
+    >
+      <img src={img} className="card-img-top" alt={title} />
+
+      <div className="card-body d-flex justify-content-between align-items-start flex-column">
+        <h5 className="card-title">{title}</h5>
+        <p className="card-text">{text}</p>
+
+        {view_btn && (
           <button
             className="btn px-5 p-2"
             onClick={() => window.open(link, "_blank")}
           >
             View Project
           </button>
-        </div>
-      </motion.div>
-    </>
+        )}
+      </div>
+    </motion.div>
   );
 }
 
