@@ -66,6 +66,18 @@ function Projects() {
 
         <SwiperSlide>
           <ProjectCard
+            img={beitAlAluminiumWebsite}
+            title="Freelance - Complete Online Store System (In Progress)"
+            text="A complete E-Commerce platform with product management, order processing, and an admin dashboard for full store control."
+            link="#"
+            pos={50}
+            delay={0.5}
+            view_btn={false}
+          />
+        </SwiperSlide>
+
+        <SwiperSlide>
+          <ProjectCard
             img={craftora}
             title="Craftora E-Commerce Website (Full Project)"
             text="Full-featured online store with cart system"
@@ -97,18 +109,6 @@ function Projects() {
             pos={-50}
             delay={0.4}
             view_btn={true}
-          />
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <ProjectCard
-            img={beitAlAluminiumWebsite}
-            title="Freelance - E-Commerce Website (Full Project) (In Progress)"
-            text="Full-stack E-Commerce website with React & Django and admin dashboard for orders."
-            link="#"
-            pos={50}
-            delay={0.5}
-            view_btn={false}
           />
         </SwiperSlide>
       </Swiper>
