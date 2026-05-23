@@ -131,8 +131,9 @@ function ProjectCard({ img, title, text, link, pos, delay, view_btn }) {
   return (
     <motion.div
       initial={isMobile ? { x: pos, opacity: 0 } : { y: pos, opacity: 0 }}
-      animate={{ x: 0, y: 0, opacity: 1 }}
+      whileInView={{ x: 0, y: 0, opacity: 1 }}
       transition={{ duration: 0.5, delay }}
+      viewport={{ once: true, amount: 0.3 }}
       className="card d-flex flex-column h-auto"
     >
       <img src={img} className="card-img-top" alt={title} />
