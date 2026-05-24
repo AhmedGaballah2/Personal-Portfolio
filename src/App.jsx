@@ -1,4 +1,7 @@
+import { useEffect, useState } from "react";
+
 import "./App.css";
+
 import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
 import About from "./components/About";
@@ -9,8 +12,19 @@ import Skills from "./components/Skills";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Particles from "./components/Particles";
+import Preloader from "./components/Preloader";
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2200);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="app">
       <Particles
@@ -24,15 +38,22 @@ function App() {
         particleHoverFactor={1}
         speed={0.05}
       />
-      <Navbar />
-      <HeroSection />
-      <About />
-      <Education />
-      <Services />
-      <Projects />
-      <Skills />
-      <Contact />
-      <Footer />
+
+      <Preloader loading={loading} />
+
+      {!loading && (
+        <>
+          <Navbar />
+          <HeroSection />
+          <About />
+          <Education />
+          <Services />
+          <Projects />
+          <Skills />
+          <Contact />
+          <Footer />
+        </>
+      )}
     </div>
   );
 }
