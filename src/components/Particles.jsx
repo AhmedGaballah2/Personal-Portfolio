@@ -24,43 +24,56 @@ const vertex = /* glsl */ `
   attribute vec3 position;
   attribute vec4 random;
   attribute vec3 color;
-  
+
   uniform mat4 modelMatrix;
   uniform mat4 viewMatrix;
   uniform mat4 projectionMatrix;
+
   uniform vec2 uMouse;
   uniform float uTime;
   uniform float uSpread;
   uniform float uBaseSize;
   uniform float uSizeRandomness;
-  
+
   varying vec4 vRandom;
   varying vec3 vColor;
-  
+
   void main() {
     vRandom = random;
     vColor = color;
-    
+
     vec3 pos = position * uSpread;
     pos.z *= 10.0;
-    
+
+    // mouse interaction
+    float dist = length(pos.xy - vec2(uMouse.x * uSpread, uMouse.y * uSpread));
+
+    float influence = smoothstep(4.0, 0.0, dist);
+
+    pos.z += influence * 2.0;
+
+    pos.x += (pos.x - uMouse.x * uSpread) * influence * 0.15;
+    pos.y += (pos.y - uMouse.y * uSpread) * influence * 0.15;
+
     vec4 mPos = modelMatrix * vec4(pos, 1.0);
+
     float t = uTime;
+
     mPos.x += sin(t * random.z + 6.28 * random.w) * mix(0.1, 1.5, random.x);
     mPos.y += sin(t * random.y + 6.28 * random.x) * mix(0.1, 1.5, random.w);
     mPos.z += sin(t * random.w + 6.28 * random.y) * mix(0.1, 1.5, random.z);
-    
+
     vec4 mvPos = viewMatrix * mPos;
 
     if (uSizeRandomness == 0.0) {
       gl_PointSize = uBaseSize;
     } else {
-      gl_PointSize = (uBaseSize * (1.0 + uSizeRandomness * (random.x - 0.5))) / length(mvPos.xyz);
+      gl_PointSize =
+        (uBaseSize * (1.0 + uSizeRandomness * (random.x - 0.5)))
+        / length(mvPos.xyz);
     }
 
     gl_Position = projectionMatrix * mvPos;
-    float dist = length(pos.xy - uMouse * 2.0);
-    pos.z += sin(dist * 5.0 - uTime * 2.0) * 0.5;
   }
 `;
 
@@ -135,16 +148,14 @@ const Particles = ({
     resize();
 
     const handleMouseMove = (e) => {
-      const rect = container.getBoundingClientRect();
-
-      const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-      const y = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
+      const x = (e.clientX / window.innerWidth) * 2 - 1;
+      const y = -(e.clientY / window.innerHeight) * 2 + 1;
 
       mouseRef.current = { x, y };
     };
 
     if (moveParticlesOnHover) {
-      container.addEventListener("mousemove", handleMouseMove);
+      window.addEventListener("mousemove", handleMouseMove);
     }
 
     const count = particleCount;
@@ -223,6 +234,8 @@ const Particles = ({
         particles.rotation.z += 0.01 * speed;
       }
 
+      program.uniforms.uTime.value = elapsed * 0.001;
+
       renderer.render({ scene: particles, camera });
     };
 
@@ -231,7 +244,7 @@ const Particles = ({
     return () => {
       window.removeEventListener("resize", resize);
       if (moveParticlesOnHover) {
-        container.removeEventListener("mousemove", handleMouseMove);
+        window.removeEventListener("mousemove", handleMouseMove);
       }
       cancelAnimationFrame(animationFrameId);
       if (container.contains(gl.canvas)) {

@@ -17,10 +17,12 @@ function App() {
         particleColors={["#d4af37"]}
         particleCount={200}
         particleSpread={10}
-        speed={0.1}
         alphaParticles={false}
         disableRotation={false}
         pixelRatio={1}
+        moveParticlesOnHover={true}
+        particleHoverFactor={1}
+        speed={0.05}
       />
       <Navbar />
       <HeroSection />
