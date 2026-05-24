@@ -1,6 +1,6 @@
 # 🚀 Personal Portfolio Website
 
-> “Turning ideas into clean and interactive web experiences.”
+> Turning ideas into clean and interactive web experiences.
 
 A modern and responsive portfolio website showcasing my projects, skills, and experience as a Full-Stack Developer. Built to highlight my work, technical expertise, and provide an easy way to connect with me.
 
