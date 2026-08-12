@@ -69,10 +69,10 @@ function Projects() {
             img={beitAlAluminiumWebsite}
             title="Freelance - Complete Online Store System (In Progress)"
             text="A complete E-Commerce platform with product management, order processing, and an admin dashboard for full store control."
-            link="#"
+            link="https://aluminium-house.up.railway.app/"
             pos={-50}
             delay={0.2}
-            view_btn={false}
+            view_btn={true}
           />
         </SwiperSlide>
 

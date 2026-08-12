@@ -11,6 +11,8 @@ import mysql from "../assets/mysql.webp";
 import postgresql from "../assets/postgresql.webp";
 import github from "../assets/github.webp";
 import docker from "../assets/docker.webp";
+import ts from "../assets/typescript.png";
+import next from "../assets/nextjs.png";
 import { useState, useEffect } from "react";
 
 function Skills() {
@@ -68,52 +70,66 @@ function Skills() {
           pos={-50}
         />
         <SkillCard
+          image={ts}
+          title={"TypeScript"}
+          percentage={"80"}
+          delay={1}
+          pos={50}
+        />
+        <SkillCard
           image={react}
           title={"React"}
           percentage={"80"}
-          delay={1}
+          delay={1.1}
+          pos={-50}
+        />
+        <SkillCard
+          image={next}
+          title={"Next.js"}
+          percentage={"75"}
+          delay={1.2}
           pos={50}
         />
         <SkillCard
           image={python}
           title={"Python"}
           percentage={"80"}
-          delay={1.1}
+          delay={1.3}
           pos={-50}
         />
         <SkillCard
           image={django}
           title={"Django"}
           percentage={"80"}
-          delay={1.2}
+          delay={1.4}
           pos={50}
         />
         <SkillCard
           image={mysql}
           title={"MySQL"}
           percentage={"75"}
-          delay={1.3}
+          delay={1.5}
           pos={-50}
         />
         <SkillCard
           image={postgresql}
           title={"PostgreSQL"}
           percentage={"75"}
-          delay={1.4}
+          delay={1.6}
           pos={50}
         />
         <SkillCard
           image={github}
           title={"Git & GitHub"}
           percentage={"85"}
-          delay={1.5}
+          delay={1.7}
           pos={-50}
         />
         <SkillCard
           image={docker}
           title={"Docker"}
           percentage={"80"}
-          delay={1.6}
+          delay={1.8}
           pos={50}
         />
       </div>
