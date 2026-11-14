@@ -29,7 +29,7 @@ function About() {
             whileInView={{ opacity: 1 }}
             transition={{ ease: "ease", duration: 0.4, delay: 0.4 }}
             viewport={{ once: true }}
-            className="experience d-flex flex-column justify-content-center align-items-center flex-wrap g-2 p-2 px-5"
+            className="experience-projects d-flex flex-column justify-content-center align-items-center flex-wrap g-2 p-2 px-5"
           >
             <h2 className="text-center fs-1">+3</h2>
             <p className="text-center fs-5">Full Stack Projects</p>

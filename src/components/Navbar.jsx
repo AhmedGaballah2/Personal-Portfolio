@@ -22,6 +22,9 @@ function Navbar() {
         <li onClick={() => (window.location.href = "#education")}>
           <a>Education</a>
         </li>
+        <li onClick={() => (window.location.href = "#experience")}>
+          <a>Experience</a>
+        </li>
         <li onClick={() => (window.location.href = "#services")}>
           <a>Services</a>
         </li>
@@ -68,6 +71,9 @@ function Navbar() {
           </li>
           <li onClick={() => (window.location.href = "#education")}>
             <a>Education</a>
+          </li>
+          <li onClick={() => (window.location.href = "#experience")}>
+            <a>Experience</a>
           </li>
           <li onClick={() => (window.location.href = "#services")}>
             <a>Services</a>
